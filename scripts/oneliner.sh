@@ -15,6 +15,7 @@ else
 fi
 
 cargo build --manifest-path "$project_dir/linux/Cargo.toml" --release
+sudo modprobe uinput
 sudo "$project_dir/scripts/install-udev.sh"
 
 if adb get-state >/dev/null 2>&1; then
