@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+if ! adb get-state >/dev/null 2>&1; then
+    printf '%s\n' 'No authorized Android device found.' >&2
+    printf '%s\n' 'Connect the phone, enable USB debugging, and accept the authorization prompt.' >&2
+    exit 1
+fi
+
+adb forward tcp:27183 tcp:27183 >/dev/null
+exec spenblet-daemon

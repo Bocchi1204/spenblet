@@ -41,15 +41,17 @@ Build the Linux daemon and install the `uinput` access rule:
 
 ```sh
 cargo build --manifest-path linux/Cargo.toml --release
+sudo modprobe uinput
 sudo ./scripts/install-udev.sh
+sudo install -Dm755 linux/target/release/spenblet-daemon /usr/local/bin/spenblet-daemon
+sudo install -Dm755 scripts/spenblet /usr/local/bin/spenblet
+printf '%s\n' 'uinput' | sudo tee /etc/modules-load.d/spenblet.conf >/dev/null
 ```
 
 Log out and back in if access to `/dev/uinput` is denied. Open the Android app, then run:
 
 ```sh
-adb forward tcp:27183 tcp:27183
-sudo modprobe uinput
-./linux/target/release/spenblet-daemon
+spenblet
 ```
 
 In Krita, select the `spenblet Pen` tablet device if needed.

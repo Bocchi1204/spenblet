@@ -17,6 +17,9 @@ fi
 cargo build --manifest-path "$project_dir/linux/Cargo.toml" --release
 sudo modprobe uinput
 sudo "$project_dir/scripts/install-udev.sh"
+sudo install -Dm755 "$project_dir/linux/target/release/spenblet-daemon" /usr/local/bin/spenblet-daemon
+sudo install -Dm755 "$project_dir/scripts/spenblet" /usr/local/bin/spenblet
+printf '%s\n' 'uinput' | sudo tee /etc/modules-load.d/spenblet.conf >/dev/null
 
 if adb get-state >/dev/null 2>&1; then
     apk_path=${TMPDIR:-/tmp}/spenblet-1.0.0-beta.1.apk
@@ -29,6 +32,4 @@ else
 fi
 
 printf '%s\n' 'Installation complete. Open spenblet on the phone, then run:'
-printf '%s\n' 'adb forward tcp:27183 tcp:27183'
-printf '%s\n' 'sudo modprobe uinput'
-printf '%s\n' "$project_dir/linux/target/release/spenblet-daemon"
+printf '%s\n' 'spenblet'
