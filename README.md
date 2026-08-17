@@ -4,10 +4,6 @@ Use a Samsung S Pen phone as a wired drawing tablet on Linux.
 
 spenblet consists of an Android drawing surface and a Linux daemon. They communicate only through a USB ADB port forward. The daemon creates a standard virtual pen device through `uinput`, allowing applications such as Krita to consume its input through libinput on Wayland or X11.
 
-## Status
-
-Beta 1.0 has been validated with a Galaxy S24 Ultra, CachyOS, KDE Wayland, and Krita. The Android app captures stylus input on a dark, non-drawing tablet surface and streams normalized coordinates, pressure, hover distance, tilt, contact, and stylus-button state. The Linux daemon accepts that stream and emits a virtual pen device.
-
 ## Requirements
 
 - A Samsung Galaxy Note or S device whose Android input stack exposes S Pen events
@@ -16,6 +12,14 @@ Beta 1.0 has been validated with a Galaxy S24 Ultra, CachyOS, KDE Wayland, and K
 - Android Platform Tools (`adb`)
 
 ## Install Beta 1.0
+
+For Arch-based, Debian, and Ubuntu-based distributions, connect the phone with USB debugging enabled, accept the authorization prompt, and run:
+
+```sh
+git clone https://github.com/Bocchi1204/spenblet.git && cd spenblet && ./scripts/oneliner.sh
+```
+
+The installer detects the package manager, installs the required tools, builds the daemon, installs the `uinput` rule, and installs the APK when an authorized device is available. It does not replace the manual commands below, which are useful for reviewing each step.
 
 Install `adb` and the tools needed to build the Linux daemon:
 

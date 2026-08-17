@@ -7,7 +7,6 @@ The first public beta provides:
 - A standard Linux `uinput` tablet recognized by libinput
 - KDE Wayland and Krita compatibility
 - Automatic reconnection after transport interruptions
-- A full-screen Android tablet surface with a dark dotted background and no local stroke rendering
 
 Validated hardware and software:
 
