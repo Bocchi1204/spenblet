@@ -1,0 +1,9 @@
+[package]
+name = "spenblet-daemon"
+version = "1.0.0-beta.1"
+edition = "2021"
+license = "GPL-3.0-or-later"
+description = "ADB-backed virtual S Pen tablet for Linux"
+
+[dependencies]
+libc = "0.2"

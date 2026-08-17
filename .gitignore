@@ -1,0 +1,8 @@
+.DS_Store
+android/.gradle/
+android/build/
+android/app/build/
+linux/target/
+android/local.properties
+outputs/
+work/
